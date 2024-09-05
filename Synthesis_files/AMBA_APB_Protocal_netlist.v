@@ -1,0 +1,555 @@
+// Copyright 1986-2018 Xilinx, Inc. All Rights Reserved.
+// --------------------------------------------------------------------------------
+// Tool Version: Vivado v.2018.2 (win64) Build 2258646 Thu Jun 14 20:03:12 MDT 2018
+// Date        : Thu Sep  5 04:02:17 2024
+// Host        : Mo-AZ running 64-bit major release  (build 9200)
+// Command     : write_verilog {D:/Digital ic design/Projects/AMBA_APb_protocol/AMBA_APB_Protocal/AMBA_APB_Protocal.v}
+// Design      : AMBA_APB
+// Purpose     : This is a Verilog netlist of the current design or from a specific cell of the design. The output is an
+//               IEEE 1364-2001 compliant Verilog HDL file that contains netlist information obtained from the input
+//               design files.
+// Device      : xc7a200tffg1156-3
+// --------------------------------------------------------------------------------
+`timescale 1 ps / 1 ps
+
+(* ACCESS = "2'b10" *) (* ADDr_WIDTH = "8" *) (* Data_WIDTH = "32" *) 
+(* IDEAL = "2'b00" *) (* SETUP = "2'b01" *) (* mem_length = "256" *) 
+(* pSTRB_WIDTH = "4" *) 
+(* STRUCTURAL_NETLIST = "yes" *)
+module AMBA_APB
+   (pclk,
+    prst_n,
+    pADDr,
+    psel,
+    penable,
+    pWRITE,
+    pWDATA,
+    pSTRB,
+    pREADY,
+    pRDATA);
+  input pclk;
+  input prst_n;
+  input [7:0]pADDr;
+  input psel;
+  input penable;
+  input pWRITE;
+  input [31:0]pWDATA;
+  input [3:0]pSTRB;
+  output pREADY;
+  output [31:0]pRDATA;
+
+  wire \<const0> ;
+  wire \<const1> ;
+  wire \FSM_sequential_cs[0]_i_1_n_0 ;
+  wire \FSM_sequential_cs[1]_i_1_n_0 ;
+  (* RTL_KEEP = "yes" *) wire [1:0]cs;
+  wire [7:0]pADDr;
+  wire [7:0]pADDr_IBUF;
+  wire [31:0]pRDATA;
+  wire [31:0]pRDATA_OBUF;
+  wire pREADY;
+  wire pREADY_OBUF;
+  wire [3:0]pSTRB;
+  wire [3:0]pSTRB_IBUF;
+  wire [31:0]pWDATA;
+  wire [31:0]pWDATA_IBUF;
+  wire pWRITE;
+  wire pWRITE_IBUF;
+  wire pclk;
+  wire pclk_IBUF;
+  wire pclk_IBUF_BUFG;
+  wire penable;
+  wire penable_IBUF;
+  wire prst_n;
+  wire prst_n_IBUF;
+  wire psel;
+  wire psel_IBUF;
+
+  RAM BLK
+       (.ADDRARDADDR(pADDr_IBUF),
+        .WEBWE(pSTRB_IBUF),
+        .pRDATA_OBUF(pRDATA_OBUF),
+        .pWDATA_IBUF(pWDATA_IBUF),
+        .pWRITE_IBUF(pWRITE_IBUF),
+        .pclk_IBUF_BUFG(pclk_IBUF_BUFG),
+        .penable_IBUF(penable_IBUF),
+        .prst_n_IBUF(prst_n_IBUF));
+  LUT5 #(
+    .INIT(32'h022A0000)) 
+    \FSM_sequential_cs[0]_i_1 
+       (.I0(psel_IBUF),
+        .I1(cs[1]),
+        .I2(penable_IBUF),
+        .I3(cs[0]),
+        .I4(prst_n_IBUF),
+        .O(\FSM_sequential_cs[0]_i_1_n_0 ));
+  LUT5 #(
+    .INIT(32'h08800000)) 
+    \FSM_sequential_cs[1]_i_1 
+       (.I0(psel_IBUF),
+        .I1(penable_IBUF),
+        .I2(cs[1]),
+        .I3(cs[0]),
+        .I4(prst_n_IBUF),
+        .O(\FSM_sequential_cs[1]_i_1_n_0 ));
+  (* FSM_ENCODED_STATES = "IDEAL:00,ACCESS:10,SETUP:01" *) 
+  (* KEEP = "yes" *) 
+  FDRE #(
+    .INIT(1'b0)) 
+    \FSM_sequential_cs_reg[0] 
+       (.C(pclk_IBUF_BUFG),
+        .CE(\<const1> ),
+        .D(\FSM_sequential_cs[0]_i_1_n_0 ),
+        .Q(cs[0]),
+        .R(\<const0> ));
+  (* FSM_ENCODED_STATES = "IDEAL:00,ACCESS:10,SETUP:01" *) 
+  (* KEEP = "yes" *) 
+  FDRE #(
+    .INIT(1'b0)) 
+    \FSM_sequential_cs_reg[1] 
+       (.C(pclk_IBUF_BUFG),
+        .CE(\<const1> ),
+        .D(\FSM_sequential_cs[1]_i_1_n_0 ),
+        .Q(cs[1]),
+        .R(\<const0> ));
+  GND GND
+       (.G(\<const0> ));
+  VCC VCC
+       (.P(\<const1> ));
+  IBUF \pADDr_IBUF[0]_inst 
+       (.I(pADDr[0]),
+        .O(pADDr_IBUF[0]));
+  IBUF \pADDr_IBUF[1]_inst 
+       (.I(pADDr[1]),
+        .O(pADDr_IBUF[1]));
+  IBUF \pADDr_IBUF[2]_inst 
+       (.I(pADDr[2]),
+        .O(pADDr_IBUF[2]));
+  IBUF \pADDr_IBUF[3]_inst 
+       (.I(pADDr[3]),
+        .O(pADDr_IBUF[3]));
+  IBUF \pADDr_IBUF[4]_inst 
+       (.I(pADDr[4]),
+        .O(pADDr_IBUF[4]));
+  IBUF \pADDr_IBUF[5]_inst 
+       (.I(pADDr[5]),
+        .O(pADDr_IBUF[5]));
+  IBUF \pADDr_IBUF[6]_inst 
+       (.I(pADDr[6]),
+        .O(pADDr_IBUF[6]));
+  IBUF \pADDr_IBUF[7]_inst 
+       (.I(pADDr[7]),
+        .O(pADDr_IBUF[7]));
+  OBUF \pRDATA_OBUF[0]_inst 
+       (.I(pRDATA_OBUF[0]),
+        .O(pRDATA[0]));
+  OBUF \pRDATA_OBUF[10]_inst 
+       (.I(pRDATA_OBUF[10]),
+        .O(pRDATA[10]));
+  OBUF \pRDATA_OBUF[11]_inst 
+       (.I(pRDATA_OBUF[11]),
+        .O(pRDATA[11]));
+  OBUF \pRDATA_OBUF[12]_inst 
+       (.I(pRDATA_OBUF[12]),
+        .O(pRDATA[12]));
+  OBUF \pRDATA_OBUF[13]_inst 
+       (.I(pRDATA_OBUF[13]),
+        .O(pRDATA[13]));
+  OBUF \pRDATA_OBUF[14]_inst 
+       (.I(pRDATA_OBUF[14]),
+        .O(pRDATA[14]));
+  OBUF \pRDATA_OBUF[15]_inst 
+       (.I(pRDATA_OBUF[15]),
+        .O(pRDATA[15]));
+  OBUF \pRDATA_OBUF[16]_inst 
+       (.I(pRDATA_OBUF[16]),
+        .O(pRDATA[16]));
+  OBUF \pRDATA_OBUF[17]_inst 
+       (.I(pRDATA_OBUF[17]),
+        .O(pRDATA[17]));
+  OBUF \pRDATA_OBUF[18]_inst 
+       (.I(pRDATA_OBUF[18]),
+        .O(pRDATA[18]));
+  OBUF \pRDATA_OBUF[19]_inst 
+       (.I(pRDATA_OBUF[19]),
+        .O(pRDATA[19]));
+  OBUF \pRDATA_OBUF[1]_inst 
+       (.I(pRDATA_OBUF[1]),
+        .O(pRDATA[1]));
+  OBUF \pRDATA_OBUF[20]_inst 
+       (.I(pRDATA_OBUF[20]),
+        .O(pRDATA[20]));
+  OBUF \pRDATA_OBUF[21]_inst 
+       (.I(pRDATA_OBUF[21]),
+        .O(pRDATA[21]));
+  OBUF \pRDATA_OBUF[22]_inst 
+       (.I(pRDATA_OBUF[22]),
+        .O(pRDATA[22]));
+  OBUF \pRDATA_OBUF[23]_inst 
+       (.I(pRDATA_OBUF[23]),
+        .O(pRDATA[23]));
+  OBUF \pRDATA_OBUF[24]_inst 
+       (.I(pRDATA_OBUF[24]),
+        .O(pRDATA[24]));
+  OBUF \pRDATA_OBUF[25]_inst 
+       (.I(pRDATA_OBUF[25]),
+        .O(pRDATA[25]));
+  OBUF \pRDATA_OBUF[26]_inst 
+       (.I(pRDATA_OBUF[26]),
+        .O(pRDATA[26]));
+  OBUF \pRDATA_OBUF[27]_inst 
+       (.I(pRDATA_OBUF[27]),
+        .O(pRDATA[27]));
+  OBUF \pRDATA_OBUF[28]_inst 
+       (.I(pRDATA_OBUF[28]),
+        .O(pRDATA[28]));
+  OBUF \pRDATA_OBUF[29]_inst 
+       (.I(pRDATA_OBUF[29]),
+        .O(pRDATA[29]));
+  OBUF \pRDATA_OBUF[2]_inst 
+       (.I(pRDATA_OBUF[2]),
+        .O(pRDATA[2]));
+  OBUF \pRDATA_OBUF[30]_inst 
+       (.I(pRDATA_OBUF[30]),
+        .O(pRDATA[30]));
+  OBUF \pRDATA_OBUF[31]_inst 
+       (.I(pRDATA_OBUF[31]),
+        .O(pRDATA[31]));
+  OBUF \pRDATA_OBUF[3]_inst 
+       (.I(pRDATA_OBUF[3]),
+        .O(pRDATA[3]));
+  OBUF \pRDATA_OBUF[4]_inst 
+       (.I(pRDATA_OBUF[4]),
+        .O(pRDATA[4]));
+  OBUF \pRDATA_OBUF[5]_inst 
+       (.I(pRDATA_OBUF[5]),
+        .O(pRDATA[5]));
+  OBUF \pRDATA_OBUF[6]_inst 
+       (.I(pRDATA_OBUF[6]),
+        .O(pRDATA[6]));
+  OBUF \pRDATA_OBUF[7]_inst 
+       (.I(pRDATA_OBUF[7]),
+        .O(pRDATA[7]));
+  OBUF \pRDATA_OBUF[8]_inst 
+       (.I(pRDATA_OBUF[8]),
+        .O(pRDATA[8]));
+  OBUF \pRDATA_OBUF[9]_inst 
+       (.I(pRDATA_OBUF[9]),
+        .O(pRDATA[9]));
+  OBUF pREADY_OBUF_inst
+       (.I(pREADY_OBUF),
+        .O(pREADY));
+  LUT3 #(
+    .INIT(8'h20)) 
+    pREADY_OBUF_inst_i_1
+       (.I0(prst_n_IBUF),
+        .I1(cs[0]),
+        .I2(cs[1]),
+        .O(pREADY_OBUF));
+  IBUF \pSTRB_IBUF[0]_inst 
+       (.I(pSTRB[0]),
+        .O(pSTRB_IBUF[0]));
+  IBUF \pSTRB_IBUF[1]_inst 
+       (.I(pSTRB[1]),
+        .O(pSTRB_IBUF[1]));
+  IBUF \pSTRB_IBUF[2]_inst 
+       (.I(pSTRB[2]),
+        .O(pSTRB_IBUF[2]));
+  IBUF \pSTRB_IBUF[3]_inst 
+       (.I(pSTRB[3]),
+        .O(pSTRB_IBUF[3]));
+  IBUF \pWDATA_IBUF[0]_inst 
+       (.I(pWDATA[0]),
+        .O(pWDATA_IBUF[0]));
+  IBUF \pWDATA_IBUF[10]_inst 
+       (.I(pWDATA[10]),
+        .O(pWDATA_IBUF[10]));
+  IBUF \pWDATA_IBUF[11]_inst 
+       (.I(pWDATA[11]),
+        .O(pWDATA_IBUF[11]));
+  IBUF \pWDATA_IBUF[12]_inst 
+       (.I(pWDATA[12]),
+        .O(pWDATA_IBUF[12]));
+  IBUF \pWDATA_IBUF[13]_inst 
+       (.I(pWDATA[13]),
+        .O(pWDATA_IBUF[13]));
+  IBUF \pWDATA_IBUF[14]_inst 
+       (.I(pWDATA[14]),
+        .O(pWDATA_IBUF[14]));
+  IBUF \pWDATA_IBUF[15]_inst 
+       (.I(pWDATA[15]),
+        .O(pWDATA_IBUF[15]));
+  IBUF \pWDATA_IBUF[16]_inst 
+       (.I(pWDATA[16]),
+        .O(pWDATA_IBUF[16]));
+  IBUF \pWDATA_IBUF[17]_inst 
+       (.I(pWDATA[17]),
+        .O(pWDATA_IBUF[17]));
+  IBUF \pWDATA_IBUF[18]_inst 
+       (.I(pWDATA[18]),
+        .O(pWDATA_IBUF[18]));
+  IBUF \pWDATA_IBUF[19]_inst 
+       (.I(pWDATA[19]),
+        .O(pWDATA_IBUF[19]));
+  IBUF \pWDATA_IBUF[1]_inst 
+       (.I(pWDATA[1]),
+        .O(pWDATA_IBUF[1]));
+  IBUF \pWDATA_IBUF[20]_inst 
+       (.I(pWDATA[20]),
+        .O(pWDATA_IBUF[20]));
+  IBUF \pWDATA_IBUF[21]_inst 
+       (.I(pWDATA[21]),
+        .O(pWDATA_IBUF[21]));
+  IBUF \pWDATA_IBUF[22]_inst 
+       (.I(pWDATA[22]),
+        .O(pWDATA_IBUF[22]));
+  IBUF \pWDATA_IBUF[23]_inst 
+       (.I(pWDATA[23]),
+        .O(pWDATA_IBUF[23]));
+  IBUF \pWDATA_IBUF[24]_inst 
+       (.I(pWDATA[24]),
+        .O(pWDATA_IBUF[24]));
+  IBUF \pWDATA_IBUF[25]_inst 
+       (.I(pWDATA[25]),
+        .O(pWDATA_IBUF[25]));
+  IBUF \pWDATA_IBUF[26]_inst 
+       (.I(pWDATA[26]),
+        .O(pWDATA_IBUF[26]));
+  IBUF \pWDATA_IBUF[27]_inst 
+       (.I(pWDATA[27]),
+        .O(pWDATA_IBUF[27]));
+  IBUF \pWDATA_IBUF[28]_inst 
+       (.I(pWDATA[28]),
+        .O(pWDATA_IBUF[28]));
+  IBUF \pWDATA_IBUF[29]_inst 
+       (.I(pWDATA[29]),
+        .O(pWDATA_IBUF[29]));
+  IBUF \pWDATA_IBUF[2]_inst 
+       (.I(pWDATA[2]),
+        .O(pWDATA_IBUF[2]));
+  IBUF \pWDATA_IBUF[30]_inst 
+       (.I(pWDATA[30]),
+        .O(pWDATA_IBUF[30]));
+  IBUF \pWDATA_IBUF[31]_inst 
+       (.I(pWDATA[31]),
+        .O(pWDATA_IBUF[31]));
+  IBUF \pWDATA_IBUF[3]_inst 
+       (.I(pWDATA[3]),
+        .O(pWDATA_IBUF[3]));
+  IBUF \pWDATA_IBUF[4]_inst 
+       (.I(pWDATA[4]),
+        .O(pWDATA_IBUF[4]));
+  IBUF \pWDATA_IBUF[5]_inst 
+       (.I(pWDATA[5]),
+        .O(pWDATA_IBUF[5]));
+  IBUF \pWDATA_IBUF[6]_inst 
+       (.I(pWDATA[6]),
+        .O(pWDATA_IBUF[6]));
+  IBUF \pWDATA_IBUF[7]_inst 
+       (.I(pWDATA[7]),
+        .O(pWDATA_IBUF[7]));
+  IBUF \pWDATA_IBUF[8]_inst 
+       (.I(pWDATA[8]),
+        .O(pWDATA_IBUF[8]));
+  IBUF \pWDATA_IBUF[9]_inst 
+       (.I(pWDATA[9]),
+        .O(pWDATA_IBUF[9]));
+  IBUF pWRITE_IBUF_inst
+       (.I(pWRITE),
+        .O(pWRITE_IBUF));
+  BUFG pclk_IBUF_BUFG_inst
+       (.I(pclk_IBUF),
+        .O(pclk_IBUF_BUFG));
+  IBUF pclk_IBUF_inst
+       (.I(pclk),
+        .O(pclk_IBUF));
+  IBUF penable_IBUF_inst
+       (.I(penable),
+        .O(penable_IBUF));
+  IBUF prst_n_IBUF_inst
+       (.I(prst_n),
+        .O(prst_n_IBUF));
+  IBUF psel_IBUF_inst
+       (.I(psel),
+        .O(psel_IBUF));
+endmodule
+
+module RAM
+   (pRDATA_OBUF,
+    pclk_IBUF_BUFG,
+    ADDRARDADDR,
+    pWDATA_IBUF,
+    WEBWE,
+    penable_IBUF,
+    pWRITE_IBUF,
+    prst_n_IBUF);
+  output [31:0]pRDATA_OBUF;
+  input pclk_IBUF_BUFG;
+  input [7:0]ADDRARDADDR;
+  input [31:0]pWDATA_IBUF;
+  input [3:0]WEBWE;
+  input penable_IBUF;
+  input pWRITE_IBUF;
+  input prst_n_IBUF;
+
+  wire \/i__n_0 ;
+  wire \<const0> ;
+  wire \<const1> ;
+  wire [7:0]ADDRARDADDR;
+  wire [3:0]WEBWE;
+  wire mem_reg_i_1_n_0;
+  wire mem_reg_i_2_n_0;
+  wire [31:0]pRDATA_OBUF;
+  wire [31:0]pWDATA_IBUF;
+  wire pWRITE_IBUF;
+  wire pclk_IBUF_BUFG;
+  wire penable_IBUF;
+  wire prst_n_IBUF;
+
+  LUT3 #(
+    .INIT(8'h80)) 
+    \/i_ 
+       (.I0(penable_IBUF),
+        .I1(pWRITE_IBUF),
+        .I2(prst_n_IBUF),
+        .O(\/i__n_0 ));
+  GND GND
+       (.G(\<const0> ));
+  VCC VCC
+       (.P(\<const1> ));
+  (* \MEM.PORTA.DATA_BIT_LAYOUT  = "p0_d8_p0_d8" *) 
+  (* \MEM.PORTB.DATA_BIT_LAYOUT  = "p0_d8_p0_d8" *) 
+  (* METHODOLOGY_DRC_VIOS = "{SYNTH-6 {cell *THIS*}}" *) 
+  (* RTL_RAM_BITS = "8192" *) 
+  (* RTL_RAM_NAME = "mem" *) 
+  (* bram_addr_begin = "0" *) 
+  (* bram_addr_end = "255" *) 
+  (* bram_slice_begin = "0" *) 
+  (* bram_slice_end = "31" *) 
+  RAMB18E1 #(
+    .DOA_REG(0),
+    .DOB_REG(0),
+    .INITP_00(256'h0000000000000000000000000000000000000000000000000000000000000000),
+    .INITP_01(256'h0000000000000000000000000000000000000000000000000000000000000000),
+    .INITP_02(256'h0000000000000000000000000000000000000000000000000000000000000000),
+    .INITP_03(256'h0000000000000000000000000000000000000000000000000000000000000000),
+    .INITP_04(256'h0000000000000000000000000000000000000000000000000000000000000000),
+    .INITP_05(256'h0000000000000000000000000000000000000000000000000000000000000000),
+    .INITP_06(256'h0000000000000000000000000000000000000000000000000000000000000000),
+    .INITP_07(256'h0000000000000000000000000000000000000000000000000000000000000000),
+    .INIT_00(256'h0000000000000000000000000000000000000000000000000000000000000000),
+    .INIT_01(256'h0000000000000000000000000000000000000000000000000000000000000000),
+    .INIT_02(256'h0000000000000000000000000000000000000000000000000000000000000000),
+    .INIT_03(256'h0000000000000000000000000000000000000000000000000000000000000000),
+    .INIT_04(256'h0000000000000000000000000000000000000000000000000000000000000000),
+    .INIT_05(256'h0000000000000000000000000000000000000000000000000000000000000000),
+    .INIT_06(256'h0000000000000000000000000000000000000000000000000000000000000000),
+    .INIT_07(256'h0000000000000000000000000000000000000000000000000000000000000000),
+    .INIT_08(256'h0000000000000000000000000000000000000000000000000000000000000000),
+    .INIT_09(256'h0000000000000000000000000000000000000000000000000000000000000000),
+    .INIT_0A(256'h0000000000000000000000000000000000000000000000000000000000000000),
+    .INIT_0B(256'h0000000000000000000000000000000000000000000000000000000000000000),
+    .INIT_0C(256'h0000000000000000000000000000000000000000000000000000000000000000),
+    .INIT_0D(256'h0000000000000000000000000000000000000000000000000000000000000000),
+    .INIT_0E(256'h0000000000000000000000000000000000000000000000000000000000000000),
+    .INIT_0F(256'h0000000000000000000000000000000000000000000000000000000000000000),
+    .INIT_10(256'h0000000000000000000000000000000000000000000000000000000000000000),
+    .INIT_11(256'h0000000000000000000000000000000000000000000000000000000000000000),
+    .INIT_12(256'h0000000000000000000000000000000000000000000000000000000000000000),
+    .INIT_13(256'h0000000000000000000000000000000000000000000000000000000000000000),
+    .INIT_14(256'h0000000000000000000000000000000000000000000000000000000000000000),
+    .INIT_15(256'h0000000000000000000000000000000000000000000000000000000000000000),
+    .INIT_16(256'h0000000000000000000000000000000000000000000000000000000000000000),
+    .INIT_17(256'h0000000000000000000000000000000000000000000000000000000000000000),
+    .INIT_18(256'h0000000000000000000000000000000000000000000000000000000000000000),
+    .INIT_19(256'h0000000000000000000000000000000000000000000000000000000000000000),
+    .INIT_1A(256'h0000000000000000000000000000000000000000000000000000000000000000),
+    .INIT_1B(256'h0000000000000000000000000000000000000000000000000000000000000000),
+    .INIT_1C(256'h0000000000000000000000000000000000000000000000000000000000000000),
+    .INIT_1D(256'h0000000000000000000000000000000000000000000000000000000000000000),
+    .INIT_1E(256'h0000000000000000000000000000000000000000000000000000000000000000),
+    .INIT_1F(256'h0000000000000000000000000000000000000000000000000000000000000000),
+    .INIT_20(256'h0000000000000000000000000000000000000000000000000000000000000000),
+    .INIT_21(256'h0000000000000000000000000000000000000000000000000000000000000000),
+    .INIT_22(256'h0000000000000000000000000000000000000000000000000000000000000000),
+    .INIT_23(256'h0000000000000000000000000000000000000000000000000000000000000000),
+    .INIT_24(256'h0000000000000000000000000000000000000000000000000000000000000000),
+    .INIT_25(256'h0000000000000000000000000000000000000000000000000000000000000000),
+    .INIT_26(256'h0000000000000000000000000000000000000000000000000000000000000000),
+    .INIT_27(256'h0000000000000000000000000000000000000000000000000000000000000000),
+    .INIT_28(256'h0000000000000000000000000000000000000000000000000000000000000000),
+    .INIT_29(256'h0000000000000000000000000000000000000000000000000000000000000000),
+    .INIT_2A(256'h0000000000000000000000000000000000000000000000000000000000000000),
+    .INIT_2B(256'h0000000000000000000000000000000000000000000000000000000000000000),
+    .INIT_2C(256'h0000000000000000000000000000000000000000000000000000000000000000),
+    .INIT_2D(256'h0000000000000000000000000000000000000000000000000000000000000000),
+    .INIT_2E(256'h0000000000000000000000000000000000000000000000000000000000000000),
+    .INIT_2F(256'h0000000000000000000000000000000000000000000000000000000000000000),
+    .INIT_30(256'h0000000000000000000000000000000000000000000000000000000000000000),
+    .INIT_31(256'h0000000000000000000000000000000000000000000000000000000000000000),
+    .INIT_32(256'h0000000000000000000000000000000000000000000000000000000000000000),
+    .INIT_33(256'h0000000000000000000000000000000000000000000000000000000000000000),
+    .INIT_34(256'h0000000000000000000000000000000000000000000000000000000000000000),
+    .INIT_35(256'h0000000000000000000000000000000000000000000000000000000000000000),
+    .INIT_36(256'h0000000000000000000000000000000000000000000000000000000000000000),
+    .INIT_37(256'h0000000000000000000000000000000000000000000000000000000000000000),
+    .INIT_38(256'h0000000000000000000000000000000000000000000000000000000000000000),
+    .INIT_39(256'h0000000000000000000000000000000000000000000000000000000000000000),
+    .INIT_3A(256'h0000000000000000000000000000000000000000000000000000000000000000),
+    .INIT_3B(256'h0000000000000000000000000000000000000000000000000000000000000000),
+    .INIT_3C(256'h0000000000000000000000000000000000000000000000000000000000000000),
+    .INIT_3D(256'h0000000000000000000000000000000000000000000000000000000000000000),
+    .INIT_3E(256'h0000000000000000000000000000000000000000000000000000000000000000),
+    .INIT_3F(256'h0000000000000000000000000000000000000000000000000000000000000000),
+    .INIT_A(18'h00000),
+    .INIT_B(18'h00000),
+    .INIT_FILE("NONE"),
+    .RAM_MODE("SDP"),
+    .RDADDR_COLLISION_HWCONFIG("DELAYED_WRITE"),
+    .READ_WIDTH_A(36),
+    .READ_WIDTH_B(0),
+    .RSTREG_PRIORITY_A("RSTREG"),
+    .RSTREG_PRIORITY_B("RSTREG"),
+    .SIM_COLLISION_CHECK("ALL"),
+    .SIM_DEVICE("7SERIES"),
+    .SRVAL_A(18'h00000),
+    .SRVAL_B(18'h00000),
+    .WRITE_MODE_A("READ_FIRST"),
+    .WRITE_MODE_B("READ_FIRST"),
+    .WRITE_WIDTH_A(0),
+    .WRITE_WIDTH_B(36)) 
+    mem_reg
+       (.ADDRARDADDR({\<const1> ,ADDRARDADDR,\<const1> ,\<const1> ,\<const1> ,\<const1> ,\<const1> }),
+        .ADDRBWRADDR({\<const1> ,ADDRARDADDR,\<const1> ,\<const1> ,\<const1> ,\<const1> ,\<const1> }),
+        .CLKARDCLK(pclk_IBUF_BUFG),
+        .CLKBWRCLK(pclk_IBUF_BUFG),
+        .DIADI(pWDATA_IBUF[15:0]),
+        .DIBDI(pWDATA_IBUF[31:16]),
+        .DIPADIP({\<const1> ,\<const1> }),
+        .DIPBDIP({\<const1> ,\<const1> }),
+        .DOADO(pRDATA_OBUF[15:0]),
+        .DOBDO(pRDATA_OBUF[31:16]),
+        .ENARDEN(mem_reg_i_1_n_0),
+        .ENBWREN(\/i__n_0 ),
+        .REGCEAREGCE(\<const0> ),
+        .REGCEB(\<const0> ),
+        .RSTRAMARSTRAM(mem_reg_i_2_n_0),
+        .RSTRAMB(\<const0> ),
+        .RSTREGARSTREG(\<const0> ),
+        .RSTREGB(\<const0> ),
+        .WEA({\<const0> ,\<const0> }),
+        .WEBWE(WEBWE));
+  LUT3 #(
+    .INIT(8'h7F)) 
+    mem_reg_i_1
+       (.I0(penable_IBUF),
+        .I1(prst_n_IBUF),
+        .I2(pWRITE_IBUF),
+        .O(mem_reg_i_1_n_0));
+  LUT2 #(
+    .INIT(4'h7)) 
+    mem_reg_i_2
+       (.I0(prst_n_IBUF),
+        .I1(penable_IBUF),
+        .O(mem_reg_i_2_n_0));
+endmodule
